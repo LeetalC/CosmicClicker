@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public CurrencyCollected currencyColl;
     public GameObject PlanetButton;
     public bool planetbuttonUnlocked = false;
     public void unlockplanetbutton() {
@@ -32,7 +33,7 @@ public class Menu : MonoBehaviour
     }
     public void Update() {
 
-        if (planetbuttonUnlocked == false && CurrencyCollected.gasCount >= 500 && CurrencyCollected.dustCount >= 190) {
+        if (planetbuttonUnlocked == false && currencyColl.intGas >= 500 && CurrencyCollected.dustCount >= 190) {
             PlanetButton.SetActive(true);
             planetbuttonUnlocked = true;
         }

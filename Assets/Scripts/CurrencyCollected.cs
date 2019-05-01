@@ -5,28 +5,29 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class CurrencyCollected : MonoBehaviour
-{
+public class CurrencyCollected : SingletonOK<CurrencyCollected> {
     //PRIVATE VARIABLES
-    public static int gasCount;
+    //public static int gasCount;
     public static int dustCount;
     public int intGas;
     public int intDust;
     //GAMEOBJS
-    public GameObject gasDisplay;
-    public GameObject dustDisplay;
     public GameObject starButton;
+    public TextMeshProUGUI gasDisplayText;
+    public TextMeshProUGUI dustDisplayText; 
 
+    void Start() {
+    }
 
     void FixedUpdate()
     {
-        intGas = gasCount;
         intDust = dustCount;
         //displays the gas and dust on the screen
-        gasDisplay.GetComponent<TextMeshProUGUI>().text = "Gas: " + intGas + " tons.";
-        dustDisplay.GetComponent<TextMeshProUGUI>().text = "Dust: " + intDust + " tons.";
+        gasDisplayText.text = "Gas: " + intGas + " tons.";
+        dustDisplayText.text = "Dust: " + intDust + " tons.";
+
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainScene")) {
-            if (gasCount >= 20) {
+            if (intGas >= 20) {
                 starButton.SetActive(true);
             }
             else {

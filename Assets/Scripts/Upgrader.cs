@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Upgrader : MonoBehaviour {
 
+public class Upgrader : MonoBehaviour {
+    public CurrencyCollected currencyColl;
     public GameObject upgradeText;
     public GameObject eventText;
 
@@ -67,7 +68,7 @@ public class Upgrader : MonoBehaviour {
     //things to update: a function that checks errors for you.
     
     public void UpgradeHarvestPerClick() {
-     bool error = eventTextError(CurrencyCollected.dustCount, CurrencyCollected.gasCount, uhDUSTCOST,uhGASCOST);
+     bool error = eventTextError(CurrencyCollected.dustCount, currencyColl.intGas, uhDUSTCOST,uhGASCOST);
         if (error == false) {
             upgradeText.GetComponent<Animation>().Stop("UpgradeAnim");
             upgradeText.GetComponent<TextMeshProUGUI>().text = ("+" + 2);
@@ -79,10 +80,10 @@ public class Upgrader : MonoBehaviour {
     }
 
     public void IncStarCapacity() {
-        bool error = eventTextError(CurrencyCollected.dustCount, CurrencyCollected.gasCount, iscDUSTCOST, iscGASCOST);
+        bool error = eventTextError(CurrencyCollected.dustCount, currencyColl.intGas, iscDUSTCOST, iscGASCOST);
         if (error == false) {
             MakeStar.maxNumStars += 1;
-            CurrencyCollected.gasCount -= iscGASCOST;
+            currencyColl.intGas -= iscGASCOST;
             CurrencyCollected.dustCount -= iscDUSTCOST;
             iscGASCOST += 10;
             iscDUSTCOST++;
@@ -91,10 +92,10 @@ public class Upgrader : MonoBehaviour {
     }
 
     public void PassiveGasGenerator() {
-        bool error = eventTextError(CurrencyCollected.dustCount, CurrencyCollected.gasCount, pggDUSTCOST, pggGASCOST);
+        bool error = eventTextError(CurrencyCollected.dustCount, currencyColl.intGas, pggDUSTCOST, pggGASCOST);
         if (error == false) {
             Events.passGasGen += 2;
-            CurrencyCollected.gasCount -= pggGASCOST;
+            currencyColl.intGas -= pggGASCOST;
             CurrencyCollected.dustCount -= pggDUSTCOST;
             pggGASCOST += 100;
             pggDUSTCOST *= 2;

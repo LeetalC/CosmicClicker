@@ -7,6 +7,7 @@ using TMPro;
 
 public class MakeStar : MonoBehaviour
 {
+    
     //for the star obj
     public GameObject starMadeEvent;
     public GameObject[] stars;
@@ -37,16 +38,16 @@ public class MakeStar : MonoBehaviour
             success.Play(); //sound that plays when you press make a star and it succeeds
             Vector3 position = new Vector3(Random.Range(100, newX-100), Random.Range(700, newY-400), 0);
            // posArr[i] = position; possibly might go back to the idea of an array of positions
-            if (CurrencyCollected.gasCount >= 100 && Upgrader.bluestarunlocked == true) {    //makes a blue star if you have the gas count for it  
+            if (CurrencyCollected.Instance.intGas >= 100 && Upgrader.bluestarunlocked == true) {    //makes a blue star if you have the gas count for it  
                 aStar = Instantiate(blueStar, position, Quaternion.identity).transform;
-                CurrencyCollected.gasCount -= 100;
+                CurrencyCollected.Instance.intGas -= 100;
                 Debug.Log("You made a blue star, your gas count has been reduced by 100.");
               //  madeBlueStar = true;
                 
             }
             else {  //makes a red star instead
                 aStar = Instantiate(redStar, position, Quaternion.identity).transform;
-                CurrencyCollected.gasCount -= 20;
+                CurrencyCollected.Instance.intGas -= 20;
                 Debug.Log("You made a red star, your gas count has been reduced by 20.");
                 //  madeRedStar = true;
             }

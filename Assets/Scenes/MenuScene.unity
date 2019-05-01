@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e621e3a5db5b541aba59222d587b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyColl: {fileID: 1970578222}
   upgradeText: {fileID: 1652418347}
   eventText: {fileID: 1613240036}
   harvestorCostText: {fileID: 1049747922}
@@ -1185,6 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e621e3a5db5b541aba59222d587b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyColl: {fileID: 0}
   upgradeText: {fileID: 1652418347}
   eventText: {fileID: 0}
   harvestorCostText: {fileID: 0}
@@ -2381,6 +2383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbe96393c1f3634cb04d0ce54e10b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyColl: {fileID: 0}
   PlanetButton: {fileID: 0}
   planetbuttonUnlocked: 0
 --- !u!1 &1562901387
@@ -3250,6 +3253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589d1314b5d9c7445a221c3868220bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyColl: {fileID: 0}
   eventText: {fileID: 1613240036}
   supernovaText: {fileID: 0}
 --- !u!1 &1970578220
@@ -3299,9 +3303,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intGas: 0
   intDust: 0
-  gasDisplay: {fileID: 1039557832}
-  dustDisplay: {fileID: 952407988}
   starButton: {fileID: 2115061211}
+  gasDisplayText: {fileID: 1039557834}
+  dustDisplayText: {fileID: 952407990}
 --- !u!1 &2115061211
 GameObject:
   m_ObjectHideFlags: 0

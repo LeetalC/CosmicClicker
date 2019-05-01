@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Events : MonoBehaviour
-{
+public class Events : MonoBehaviour {
+   // public CurrencyCollected currencyColl;
     //  public GameObject bgMusic;
     public GameObject eventText;
     public GameObject supernovaText;
@@ -26,8 +26,8 @@ public class Events : MonoBehaviour
         //    Destroy(bgMusic);
         //}
     }
-    public void PassiveGasGen() {   
-        CurrencyCollected.gasCount += passGasGen;
+    public void PassiveGasGen() {
+        CurrencyCollected.Instance.intGas += passGasGen;
     }
     public void SuperNovaText() {
       

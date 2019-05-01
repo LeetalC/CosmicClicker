@@ -7,6 +7,7 @@ using TMPro;
 
 public class StarTimer : MonoBehaviour
 {
+    
     public float lifeTime = 0;
     public float longLifeSpan = 25;
     public float shortLifeSpan = 5;
@@ -52,7 +53,7 @@ public class StarTimer : MonoBehaviour
         supernovaText.GetComponent<TextMeshProUGUI>().text = "+" + StarFunctions.dustGained;
         supernovaText.GetComponent<Animation>().Play("FadeOut");
 
-        RandomAsteroid.generateAsteroidImage();
+        //RandomAsteroid.generateAsteroidImage();
         this.enabled = false;
       
     }
