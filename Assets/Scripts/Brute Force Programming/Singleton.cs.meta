@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 634d0b465789d2e48829fde41719589a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bgBig: {fileID: 3836791206274603197, guid: 9c3c5ed9c3df13041a7e1888722eb612, type: 3}
+  - bgSmall: {fileID: 914822733319895516, guid: 91c7d7bfb2ba3594daa525b1ad06cb25,
+      type: 3}
+  - music: {fileID: 8328330700617600762, guid: 3e3f75775244775489eac37a96beed60, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
