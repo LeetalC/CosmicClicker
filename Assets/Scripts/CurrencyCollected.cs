@@ -14,22 +14,13 @@ public class CurrencyCollected : SingletonOK<CurrencyCollected> {
     public TextMeshProUGUI gasDisplayText;
     public TextMeshProUGUI dustDisplayText; 
 
-    void Start() {
-    }
-
     void FixedUpdate()
     {
         //displays the gas and dust on the screen
         gasDisplayText.text = "Gas: " + intGas + " tons.";
         dustDisplayText.text = "Dust: " + intDust + " tons.";
-
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MainScene")) {
-            if (intGas >= 20) {
-                starButton.SetActive(true);
-            }
-            else {
-                starButton.SetActive(false);
-            }
-        }
+        //so long as u have 20 gas you will see the make star button
+        if (intGas >= 20) starButton.SetActive(true);
+        else starButton.SetActive(false);
     }
 }

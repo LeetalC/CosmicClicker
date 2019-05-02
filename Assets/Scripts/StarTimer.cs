@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-public class StarTimer : MonoBehaviour
-{
+public class StarTimer : MonoBehaviour {
     
     public float lifeTime = 0;
     public float longLifeSpan = 25;
@@ -26,19 +24,15 @@ public class StarTimer : MonoBehaviour
     public void Start()
     {
         supernovaText.SetActive(false);
-        if (theStar.tag == "BlueStar") {
-            lifeTime = shortLifeSpan;
-        }
-        else {
-            lifeTime = longLifeSpan;
-        }
+        if (theStar.tag == "BlueStar") lifeTime = shortLifeSpan;
+        else lifeTime = longLifeSpan;
+
         timerText.SetActive(true);
         Update();
     }
 
     // Update is called once per frame
-    void Update()
-    {   
+    void Update() {   
         lifeTime -= 1 * Time.deltaTime;
         timerText.GetComponent<TextMeshProUGUI>().text = lifeTime.ToString("F2");
 
@@ -56,3 +50,7 @@ public class StarTimer : MonoBehaviour
       
     }
 }
+/*The star swells to 100x it's size...
+then slowly and gently releases it's gasses...
+revealing bits of dust!
+A new discovery!*/

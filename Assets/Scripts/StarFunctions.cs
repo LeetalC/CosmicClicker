@@ -7,7 +7,7 @@ public class StarFunctions : MonoBehaviour
 {
     public GameObject starButton;
     public StarTimer mytimer;
-    public AudioSource supernovaSound;
+    public Sounds supernovaSound;
     public int intdustGained = 0;
     public bool timesped = false;
 
@@ -27,20 +27,16 @@ public class StarFunctions : MonoBehaviour
     public void SupernovaEvent() {
         starButton.SetActive(false);
         MakeStar.currStarCount--;
-        if (starButton.tag == "BlueStar") {
-            intdustGained = Random.Range(10, 20);
-            CurrencyCollected.Instance.intDust += intdustGained;
-        }
+
+        if (timesped == false) intdustGained = Random.Range(5, 20);
         else {
-            if (timesped == false) intdustGained = Random.Range(5, 20);
-            else {
-                intdustGained = Random.Range(50, 200);
-                timesped = false;
-            }
+            if (starButton.tag == "BlueStar") intdustGained = Random.Range(100, 1000);
+            else intdustGained = Random.Range(10, 100);
+            timesped = false;
             CurrencyCollected.Instance.intDust += intdustGained;
         }
         dustGained = intdustGained;
-        supernovaSound.Play();
+        supernovaSound.playSuperNovaSound();
         superNovaHappened = true;
         TurnOff();
     }

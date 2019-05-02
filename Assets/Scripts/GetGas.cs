@@ -9,9 +9,14 @@ public class GetGas : MonoBehaviour {
     public CurrencyCollected currencyColl;
     public GameObject gasGainedText;
     public GameObject harvestGasText;
-    public static int gasPerClick = 40;    
+    public static int gasPerClick = 40;
 
-  
+    public void Update() {
+        if (Input.GetKeyDown("1")) {
+            GainGas();
+        }
+    }
+
     public void GainGas() {
         gasGainedText.GetComponent<Animation>().Stop("GainGasAnim");
         currencyColl.intGas += gasPerClick;

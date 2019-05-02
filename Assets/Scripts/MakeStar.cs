@@ -13,10 +13,7 @@ public class MakeStar : MonoBehaviour
     public GameObject[] stars;
     public GameObject redStar;
     public GameObject blueStar;
-    //  public GameObject timerObj;
-
-    public AudioSource success;
-    public AudioSource fail;
+    public Sounds makeStarButtonSound;
 
     public bool madeBlueStar = false;
     public bool madeRedStar = false;
@@ -28,15 +25,13 @@ public class MakeStar : MonoBehaviour
     public GameObject img2;
 
 
-  //  public Vector3[] posArr = new Vector3[100];
-  //  public int i = 0;;l
     public void Start() {
         
     }
-    public void instantiateStarbirthimg(Vector3 pos) {
-        Instantiate(img1, pos, Quaternion.identity);
+    //public void instantiateStarbirthimg(Vector3 pos) {
+    //    Instantiate(img1, pos, Quaternion.identity);
        
-    }
+    //}
 
     public void MakeAStar() {   
         Transform aStar;
@@ -45,44 +40,55 @@ public class MakeStar : MonoBehaviour
 
 
         if (currStarCount < maxNumStars) {  //asking if we are allowed to make another star
-            
-            success.Play(); //sound that plays when you press make a star and it succeeds
+
+            makeStarButtonSound.succeedFail(true);
             Vector3 position = new Vector3(Random.Range(100, newX-100), Random.Range(700, newY-400), 0);
-            instantiateStarbirthimg(position);
+          //  instantiateStarbirthimg(position);
             // posArr[i] = position; possibly might go back to the idea of an array of positions
             if (CurrencyCollected.Instance.intGas >= 500 && Upgrader.bluestarunlocked == true) {    //makes a blue star if you have the gas count for it  
                 aStar = Instantiate(blueStar, position, Quaternion.identity).transform;
                 CurrencyCollected.Instance.intGas -= 500;
                 Debug.Log("You made a blue star, your gas count has been reduced by 100.");
-              //  madeBlueStar = true;
+                madeBlueStar = true;
                 
             }
             else {  //makes a red star instead
                 aStar = Instantiate(redStar, position, Quaternion.identity).transform;
                 CurrencyCollected.Instance.intGas -= 20;
                 Debug.Log("You made a red star, your gas count has been reduced by 20.");
-                //  madeRedStar = true;
+                madeRedStar = true;
             }
-            //DontDestroyOnLoad(aStar);
+
             aStar.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
 
             starMadeEvent.GetComponent<Animation>().Stop("EventAnim");
 
             starMadeEvent.GetComponent<TextMeshProUGUI>().text = "A star has been born " + position.ToString("F2");
             starMadeEvent.GetComponent<Animation>().Play("EventAnim");
-              //x  timerObj.GetComponent<StarTimer>().enabled = true;
+
             transformStar = aStar;
             currStarCount++;
             madeRedStar = madeBlueStar = false;
             
         }
         else {
-            fail.Play();
+            makeStarButtonSound.succeedFail(false);
             starMadeEvent.GetComponent<TextMeshProUGUI>().text = "You are only allowed " + maxNumStars + " star(s)!!";
             starMadeEvent.GetComponent<Animation>().Play("EventAnim");
         }
     }  
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //ALL THE POSITIONS THAT HAVE FAILED ME!!!!!!!!!!
 
