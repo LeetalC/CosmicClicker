@@ -15,7 +15,6 @@ public class GetGas : MonoBehaviour {
     public void GainGas() {
         gasGainedText.GetComponent<Animation>().Stop("GainGasAnim");
         currencyColl.intGas += gasPerClick;
-        //gasGainedText.GetComponent<Text>().text = ("+" + gasPerClick);
         gasGainedText.GetComponent<TextMeshProUGUI>().text = ("+" + gasPerClick);
         gasGainedText.GetComponent<Animation>().Play("GainGasAnim");
 

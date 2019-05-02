@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 
 public class Events : MonoBehaviour {
-   // public CurrencyCollected currencyColl;
     //  public GameObject bgMusic;
     public GameObject eventText;
     public GameObject supernovaText;

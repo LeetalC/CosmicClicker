@@ -7,8 +7,6 @@ using TMPro;
 
 public class CurrencyCollected : SingletonOK<CurrencyCollected> {
     //PRIVATE VARIABLES
-    //public static int gasCount;
-    public static int dustCount;
     public int intGas;
     public int intDust;
     //GAMEOBJS
@@ -21,7 +19,6 @@ public class CurrencyCollected : SingletonOK<CurrencyCollected> {
 
     void FixedUpdate()
     {
-        intDust = dustCount;
         //displays the gas and dust on the screen
         gasDisplayText.text = "Gas: " + intGas + " tons.";
         dustDisplayText.text = "Dust: " + intDust + " tons.";

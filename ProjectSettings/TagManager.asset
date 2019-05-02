@@ -9,6 +9,7 @@ TagManager:
   - BlueStar
   - Canvas
   - Music
+  - Panel
   layers:
   - Default
   - TransparentFX

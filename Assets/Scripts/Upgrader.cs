@@ -6,19 +6,19 @@ using TMPro;
 
 
 public class Upgrader : MonoBehaviour {
-    public CurrencyCollected currencyColl;
-    public GameObject upgradeText;
+    // public GameObject upgradeText; used for anim should delete
     public GameObject eventText;
 
     public GameObject harvestorCostText;
     public GameObject starcapCostText;
     public GameObject passiveGenText;
+    public GameObject blueStarCostText;
 
     public Button harvesterUp;
     public Button starCapUp;
     public Button getBlueStarsUp;
     public Button passiveGasGenUp;
-    
+
     public int dustUpgradeMax = 2;
     public int harvesterUpgradeMax = 100;
 
@@ -48,7 +48,7 @@ public class Upgrader : MonoBehaviour {
             eventText.GetComponent<Animation>().Play("EventAnim");
             return true;
         }
-        if(gas < gasCost) {
+        if (gas < gasCost) {
             eventText.GetComponent<TextMeshProUGUI>().text = ("Not enough gas! You need: " + (gasCost - gas) + " more gas.");
             eventText.GetComponent<Animation>().Play("EventAnim");
             return true;
@@ -56,35 +56,34 @@ public class Upgrader : MonoBehaviour {
 
         return false;
     }
-    public void Awake() {
-      //  DontDestroyOnLoad(this);
-    }
+    
     public void Update() {
         harvestorCostText.GetComponent<TextMeshProUGUI>().text = (uhGASCOST + " Gas, " + uhDUSTCOST + " Dust.");
         starcapCostText.GetComponent<TextMeshProUGUI>().text = (iscGASCOST + " Gas, " + iscDUSTCOST + " Dust.");
         passiveGenText.GetComponent<TextMeshProUGUI>().text = (pggGASCOST + " Gas, " + pggDUSTCOST + " Dust.");
+        if(!bluestarunlocked) blueStarCostText.GetComponent<TextMeshProUGUI>().text = (bsGASCOST + " Gas, " + bsDUSTCOST + " Dust.");
     }
-    
+
     //things to update: a function that checks errors for you.
-    
+
     public void UpgradeHarvestPerClick() {
-     bool error = eventTextError(CurrencyCollected.dustCount, currencyColl.intGas, uhDUSTCOST,uhGASCOST);
+        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, uhDUSTCOST, uhGASCOST);
         if (error == false) {
-            upgradeText.GetComponent<Animation>().Stop("UpgradeAnim");
-            upgradeText.GetComponent<TextMeshProUGUI>().text = ("+" + 2);
+            //upgradeText.GetComponent<Animation>().Stop("UpgradeAnim");
+            // upgradeText.GetComponent<TextMeshProUGUI>().text = ("+" + 2);
             GetGas.gasPerClick += 2;
-            upgradeText.GetComponent<Animation>().Play("UpgradeAnim");
-            CurrencyCollected.dustCount -= 2;
+            // upgradeText.GetComponent<Animation>().Play("UpgradeAnim");
+            CurrencyCollected.Instance.intDust -= 2;
             uhDUSTCOST++;
         }
     }
 
     public void IncStarCapacity() {
-        bool error = eventTextError(CurrencyCollected.dustCount, currencyColl.intGas, iscDUSTCOST, iscGASCOST);
+        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, iscDUSTCOST, iscGASCOST);
         if (error == false) {
             MakeStar.maxNumStars += 1;
-            currencyColl.intGas -= iscGASCOST;
-            CurrencyCollected.dustCount -= iscDUSTCOST;
+            CurrencyCollected.Instance.intGas -= iscGASCOST;
+            CurrencyCollected.Instance.intDust -= iscDUSTCOST;
             iscGASCOST += 10;
             iscDUSTCOST++;
         }
@@ -92,21 +91,27 @@ public class Upgrader : MonoBehaviour {
     }
 
     public void PassiveGasGenerator() {
-        bool error = eventTextError(CurrencyCollected.dustCount, currencyColl.intGas, pggDUSTCOST, pggGASCOST);
+        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, pggDUSTCOST, pggGASCOST);
         if (error == false) {
             Events.passGasGen += 2;
-            currencyColl.intGas -= pggGASCOST;
-            CurrencyCollected.dustCount -= pggDUSTCOST;
+            CurrencyCollected.Instance.intGas -= pggGASCOST;
+            CurrencyCollected.Instance.intDust -= pggDUSTCOST;
             pggGASCOST += 100;
             pggDUSTCOST *= 2;
         }
     }
 
-    //public static void UnlockBlueStars() {
-    //    bluestarunlocked = true;
-    //    CurrencyCollected.gasCount -= bsGASCOST;
-    //    CurrencyCollected.dustCount -= bsDUSTCOST;
-    //}
+    public void UnlockBlueStars() {
+        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, bsDUSTCOST, bsGASCOST);
+        if (error == false) {
+        bluestarunlocked = true;
+        CurrencyCollected.Instance.intGas -= bsGASCOST;
+        CurrencyCollected.Instance.intDust -= bsDUSTCOST;
+        }
+        //DestroyGameObject(this.gameObject);
+        //Destroy(blueStarCostText);
+     
+    }
 
 
 }

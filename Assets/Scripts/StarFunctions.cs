@@ -29,7 +29,7 @@ public class StarFunctions : MonoBehaviour
         MakeStar.currStarCount--;
         if (starButton.tag == "BlueStar") {
             intdustGained = Random.Range(10, 20);
-            CurrencyCollected.dustCount += intdustGained;
+            CurrencyCollected.Instance.intDust += intdustGained;
         }
         else {
             if (timesped == false) intdustGained = Random.Range(5, 20);
@@ -37,7 +37,7 @@ public class StarFunctions : MonoBehaviour
                 intdustGained = Random.Range(50, 200);
                 timesped = false;
             }
-            CurrencyCollected.dustCount += intdustGained;
+            CurrencyCollected.Instance.intDust += intdustGained;
         }
         dustGained = intdustGained;
         supernovaSound.Play();
@@ -48,8 +48,8 @@ public class StarFunctions : MonoBehaviour
     public void SpeedTime() {
         mytimer.SetLifeTime(-1);
         timesped = true;
-
     }
+
     public void TurnOff() {
         this.enabled = false;
     }

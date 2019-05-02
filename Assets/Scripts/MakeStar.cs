@@ -24,23 +24,35 @@ public class MakeStar : MonoBehaviour
     public static Transform transformStar;
     public static int maxNumStars = 1;
     public static int currStarCount = 0;
+    public GameObject img1;
+    public GameObject img2;
+
 
   //  public Vector3[] posArr = new Vector3[100];
-  //  public int i = 0;
-
+  //  public int i = 0;;l
+    public void Start() {
+        
+    }
+    public void instantiateStarbirthimg(Vector3 pos) {
+        Instantiate(img1, pos, Quaternion.identity);
+       
+    }
 
     public void MakeAStar() {   
         Transform aStar;
         int newX = 1080;
         int newY = 1920;
+
+
         if (currStarCount < maxNumStars) {  //asking if we are allowed to make another star
             
             success.Play(); //sound that plays when you press make a star and it succeeds
             Vector3 position = new Vector3(Random.Range(100, newX-100), Random.Range(700, newY-400), 0);
-           // posArr[i] = position; possibly might go back to the idea of an array of positions
-            if (CurrencyCollected.Instance.intGas >= 100 && Upgrader.bluestarunlocked == true) {    //makes a blue star if you have the gas count for it  
+            instantiateStarbirthimg(position);
+            // posArr[i] = position; possibly might go back to the idea of an array of positions
+            if (CurrencyCollected.Instance.intGas >= 500 && Upgrader.bluestarunlocked == true) {    //makes a blue star if you have the gas count for it  
                 aStar = Instantiate(blueStar, position, Quaternion.identity).transform;
-                CurrencyCollected.Instance.intGas -= 100;
+                CurrencyCollected.Instance.intGas -= 500;
                 Debug.Log("You made a blue star, your gas count has been reduced by 100.");
               //  madeBlueStar = true;
                 
