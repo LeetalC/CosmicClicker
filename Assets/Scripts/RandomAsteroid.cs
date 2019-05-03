@@ -4,7 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RandomAsteroid : MonoBehaviour {
-    //public static GameObject theButton;
+
+
+    //public Image[] asteroidImageArr;
+    //public Button asteroidButton;
+
+    //public void selectImage() {
+    //    int i = Random.Range(0, asteroidImageArr.Length);
+    //    asteroidButton = gameObject.GetComponent<Image>();
+    //    asteroidButton.sprite = asteroidImageArr[i];
+
+    //}
+    ////public static GameObject theButton;
 
     //public static Sprite[] arr = new Sprite[5];
 
