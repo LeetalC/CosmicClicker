@@ -8,6 +8,7 @@ public class Sounds : MonoBehaviour
     public AudioClip[] beeps;
     public AudioClip[] novas;
     public AudioClip[] soundSucceeded;
+    public AudioClip[] bgMusics;
     public AudioSource soundMaker;
 
     public void Awake() {
@@ -26,6 +27,9 @@ public class Sounds : MonoBehaviour
         soundMaker.clip = novas[getRand(novas.Length)];
         soundMaker.Play();
 
+    }
+    public AudioClip setBGMusic(int i) {
+        return bgMusics[i];
     }
     //specifically when make a star fails because you have reached star cap
     public void succeedFail(bool b) {

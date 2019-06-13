@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     public GameObject mainPanel;
     public GameObject planetPanel;
     public GameObject starsPanel;
-    
+    public GameObject settingsPanel;
 
     public GameObject PlanetButton;
     public bool planetbuttonUnlocked = false;
@@ -62,6 +62,19 @@ public class Menu : MonoBehaviour
             menuPanel.SetActive(true);
             
         }
+    }
+    public void switchtosettings() {
+        if (mainPanel.activeInHierarchy)
+        {
+            settingsPanel.SetActive(true);
+            mainPanel.SetActive(false);
+        }
+        else
+        {
+            settingsPanel.SetActive(false);
+            mainPanel.SetActive(true);
+        }
+
     }
     public void Update() {
 
