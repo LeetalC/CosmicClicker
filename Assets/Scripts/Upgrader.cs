@@ -41,7 +41,7 @@ public class Upgrader : MonoBehaviour {
 
     public static bool bluestarunlocked = false;
 
-    public bool eventTextError(int dust, int gas, int dustCost, int gasCost) {
+    public bool eventErrorFound(int dust, int gas, int dustCost, int gasCost) {
         if (gas < gasCost && dust < dustCost) {
             eventText.GetComponent<TextMeshProUGUI>().text = ("Not enough gas or dust! You need: " + (gasCost - gas) + " more gas and " + (dustCost - dust) + " more dust.");
             eventText.GetComponent<Animation>().Play("EventAnim");
@@ -60,20 +60,28 @@ public class Upgrader : MonoBehaviour {
 
         return false;
     }
-
+    public void say(string s) {
+        eventText.GetComponent<Animation>().Stop("EventAnim");
+        eventText.GetComponent<TextMeshProUGUI>().text = (s);
+        eventText.GetComponent<Animation>().Play("EventAnim");
+    }
     public void Update() {
+        //horribly inefficient find better solution to display the text.
         harvestorCostText.GetComponent<TextMeshProUGUI>().text = (uhGASCOST + " Gas, " + uhDUSTCOST + " Dust.");
         starcapCostText.GetComponent<TextMeshProUGUI>().text = (iscGASCOST + " Gas, " + iscDUSTCOST + " Dust.");
         passiveGenText.GetComponent<TextMeshProUGUI>().text = (pggGASCOST + " Gas, " + pggDUSTCOST + " Dust.");
         if (!bluestarunlocked) blueStarCostText.GetComponent<TextMeshProUGUI>().text = (bsGASCOST + " Gas, " + bsDUSTCOST + " Dust.");
     }
-
+    //---------------------------
+    //each function happens on click to their respective upgrade object in the menu panel
+    //the if statement is checking for errors and the body runs only when no errors are found
+    //TODO: have a small animation and space for each button to display how much is being updated
     public void UpgradeHarvestPerClick() {
-        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, uhDUSTCOST, uhGASCOST);
-        if (error == false) {
+        if (!eventErrorFound(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, uhDUSTCOST, uhGASCOST)) {
             //upgradeText.GetComponent<Animation>().Stop("UpgradeAnim");
             // upgradeText.GetComponent<TextMeshProUGUI>().text = ("+" + 2);
             GetGas.gasPerClick += 2;
+            say("Upgraded Harvester.");
             // upgradeText.GetComponent<Animation>().Play("UpgradeAnim");
             CurrencyCollected.Instance.intDust -= 2;
             uhDUSTCOST++;
@@ -81,8 +89,8 @@ public class Upgrader : MonoBehaviour {
     }
 
     public void IncStarCapacity() {
-        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, iscDUSTCOST, iscGASCOST);
-        if (error == false) {
+        if (!eventErrorFound(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, iscDUSTCOST, iscGASCOST)) {
+            say("Star Cap Increased.");
             MakeStar.maxNumStars += 1;
             CurrencyCollected.Instance.intGas -= iscGASCOST;
             CurrencyCollected.Instance.intDust -= iscDUSTCOST;
@@ -93,8 +101,8 @@ public class Upgrader : MonoBehaviour {
     }
 
     public void PassiveGasGenerator() {
-        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, pggDUSTCOST, pggGASCOST);
-        if (error == false) {
+        if (!eventErrorFound(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, pggDUSTCOST, pggGASCOST)) {
+            say("Passive Gas Increased.");
             Events.passGasGen += 2;
             CurrencyCollected.Instance.intGas -= pggGASCOST;
             CurrencyCollected.Instance.intDust -= pggDUSTCOST;
@@ -104,15 +112,16 @@ public class Upgrader : MonoBehaviour {
     }
 
     public void UnlockBlueStars() {
-        bool error = eventTextError(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, bsDUSTCOST, bsGASCOST);
-        if (error == false) {
+        if (!eventErrorFound(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, bsDUSTCOST, bsGASCOST)) {
+            say("Unlocked Blue Stars.");
             bluestarunlocked = true;
             CurrencyCollected.Instance.intGas -= bsGASCOST;
             CurrencyCollected.Instance.intDust -= bsDUSTCOST;
             Destroy(getBlueStarsUp.gameObject);
-            blueStarCostText.SetActive(false);
+            Destroy(blueStarCostText.gameObject);
         }
     }
+    //--------------------------------------------
 }
 
 

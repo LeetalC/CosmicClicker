@@ -402,7 +402,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5e58c576ff7a7744cb29464c61a82a4a, type: 3}
   - {fileID: 8300000, guid: 387a5467d08c2e347a2d6d9f2239a99b, type: 3}
   - {fileID: 8300000, guid: 4133215a2f8acde49b06bfc0cc609048, type: 3}
-  succeedORFail: []
+  soundSucceeded: []
   soundMaker: {fileID: 6035913103663181529}
 --- !u!1001 &2985366697281942703
 PrefabInstance:
@@ -643,6 +643,22 @@ PrefabInstance:
       propertyPath: m_Colors.m_PressedColor.b
       value: 0.13335222
       objectReference: {fileID: 0}
+    - target: {fileID: 7956290432850553812, guid: 0f364e6f753b31447a8108f791dd6e4b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7956290432850553812, guid: 0f364e6f753b31447a8108f791dd6e4b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7956290432850553812, guid: 0f364e6f753b31447a8108f791dd6e4b,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 251952294639378727, guid: 1e0ebcb8c06fa494c847a384df765900,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f364e6f753b31447a8108f791dd6e4b, type: 3}
 --- !u!1 &1943504736717412167 stripped

@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0
-  longLifeSpan: 25
-  shortLifeSpan: 4
+  longLifeSpan: 6
+  shortLifeSpan: 5
   theStar: {fileID: 4945996132325721478}
   timerText: {fileID: 4321814302709198697}
   supernovaText: {fileID: 645197693811020047}
@@ -400,7 +400,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5e58c576ff7a7744cb29464c61a82a4a, type: 3}
   - {fileID: 8300000, guid: 387a5467d08c2e347a2d6d9f2239a99b, type: 3}
   - {fileID: 8300000, guid: 4133215a2f8acde49b06bfc0cc609048, type: 3}
-  succeedORFail: []
+  soundSucceeded: []
   soundMaker: {fileID: 6301519807428739860}
 --- !u!1001 &8589812776512972398
 PrefabInstance:
@@ -409,6 +409,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 251952294639378724}
     m_Modifications:
+    - target: {fileID: 3717317367656735720, guid: 92a96838665f959408c92bf8cad669c2,
+        type: 3}
+      propertyPath: m_Name
+      value: BlueStarButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717317367656735720, guid: 92a96838665f959408c92bf8cad669c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: BlueStar
+      objectReference: {fileID: 0}
     - target: {fileID: 9196851010566197066, guid: 92a96838665f959408c92bf8cad669c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -513,16 +523,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3717317367656735720, guid: 92a96838665f959408c92bf8cad669c2,
-        type: 3}
-      propertyPath: m_Name
-      value: BlueStarButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 3717317367656735720, guid: 92a96838665f959408c92bf8cad669c2,
-        type: 3}
-      propertyPath: m_TagString
-      value: BlueStar
       objectReference: {fileID: 0}
     - target: {fileID: 7956290432850553812, guid: 92a96838665f959408c92bf8cad669c2,
         type: 3}

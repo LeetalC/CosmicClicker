@@ -9,29 +9,48 @@ public class Menu : MonoBehaviour
     public GameObject menuPanel;
     public GameObject mainPanel;
     public GameObject planetPanel;
+    public GameObject starsPanel;
+    
 
     public GameObject PlanetButton;
     public bool planetbuttonUnlocked = false;
-    public void unlockplanetbutton() {
-        PlanetButton.SetActive(false);
-    }
+    //Why did i need this?
+    //public void unlockplanetbutton() {
+    //    PlanetButton.SetActive(false);
+    //}
     void Start() {
+        starsPanel.SetActive(true);
         mainPanel.SetActive(true);
         menuPanel.SetActive(false);
-        unlockplanetbutton();
+        PlanetButton.SetActive(false);
+       // unlockplanetbutton();
     }
 
     public void switchtomenu() {
-        if (mainPanel.activeInHierarchy) {
+        //if (!mainPanel.activeInHierarchy) {
+        //    mainPanel.SetActive(true);
+        //    menuPanel.SetActive(false);
+        //    planetPanel.SetActive(false);
+
+        //}
+        //else
+        //{
+        //    menuPanel.SetActive(false);
+        //}
+        if (mainPanel.activeInHierarchy)
+        {
+
+
             mainPanel.SetActive(false);
             menuPanel.SetActive(true);
         }
-        else {
+        else
+        {
             menuPanel.SetActive(false);
             mainPanel.SetActive(true);
         }
-       
-      
+
+
     }
     public void switchtoplanets() {
         if (mainPanel.activeInHierarchy) {
@@ -46,7 +65,7 @@ public class Menu : MonoBehaviour
     }
     public void Update() {
 
-        if (planetbuttonUnlocked == false && CurrencyCollected.Instance.intGas >= 500 && CurrencyCollected.Instance.intDust >= 190) {
+        if (!planetbuttonUnlocked && CurrencyCollected.Instance.intGas >= 500 && CurrencyCollected.Instance.intDust >= 190) {
             PlanetButton.SetActive(true);
             planetbuttonUnlocked = true;
         }

@@ -13,13 +13,14 @@ public class MakeStar : MonoBehaviour
     public GameObject[] stars;
     public GameObject redStar;
     public GameObject blueStar;
+
     public Sounds makeStarButtonSound;
 
     public bool madeBlueStar = false;
     public bool madeRedStar = false;
 
     public static Transform transformStar;
-    public static int maxNumStars = 1;
+    public static int maxNumStars = 5;
     public static int currStarCount = 0;
     public GameObject img1;
     public GameObject img2;
@@ -32,7 +33,6 @@ public class MakeStar : MonoBehaviour
     //    Instantiate(img1, pos, Quaternion.identity);
        
     //}
-
     public void MakeAStar() {   
         Transform aStar;
         int newX = 1080;
@@ -58,24 +58,28 @@ public class MakeStar : MonoBehaviour
                 Debug.Log("You made a red star, your gas count has been reduced by 20.");
                 madeRedStar = true;
             }
-
-            aStar.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, true);
+            //making the object a child of the starspanel
+            aStar.SetParent(GameObject.FindGameObjectWithTag("StarsPanel").transform, true);
 
             starMadeEvent.GetComponent<Animation>().Stop("EventAnim");
-
             starMadeEvent.GetComponent<TextMeshProUGUI>().text = "A star has been born " + position.ToString("F2");
             starMadeEvent.GetComponent<Animation>().Play("EventAnim");
 
             transformStar = aStar;
             currStarCount++;
             madeRedStar = madeBlueStar = false;
-            
+
+
+            //NOTE:i dont want to hardcode this value, 
+            //the object should be destroyed in the amount of time that startimer.lifetime says
+            Destroy(aStar.gameObject, 10.0f);
         }
         else {
             makeStarButtonSound.succeedFail(false);
             starMadeEvent.GetComponent<TextMeshProUGUI>().text = "You are only allowed " + maxNumStars + " star(s)!!";
             starMadeEvent.GetComponent<Animation>().Play("EventAnim");
         }
+       
     }  
 }
 

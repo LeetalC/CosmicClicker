@@ -7,12 +7,13 @@ using TMPro;
 public class StarTimer : MonoBehaviour {
     
     public float lifeTime = 0;
+    public static float intLifeTime;
     public float longLifeSpan = 25;
     public float shortLifeSpan = 10;
 
     public GameObject theStar;
-    public GameObject timerText;
-    public GameObject supernovaText;
+    public GameObject timerText;    //the timer attached to a star
+    public GameObject supernovaText;    //the amount you recieved from a supernova
 
     public float GetlifeTime() {
         return lifeTime;
@@ -28,6 +29,7 @@ public class StarTimer : MonoBehaviour {
         else lifeTime = longLifeSpan;
 
         timerText.SetActive(true);
+        intLifeTime = lifeTime;
         Update();
     }
 
@@ -36,7 +38,7 @@ public class StarTimer : MonoBehaviour {
         lifeTime -= 1 * Time.deltaTime;
         timerText.GetComponent<TextMeshProUGUI>().text = lifeTime.ToString("F2");
 
-        if (lifeTime <= 0) TurnOff();
+        if (lifeTime <= 0 && StarFunctions.superNovaHappened) TurnOff();
     }
   
     public void TurnOff() {

@@ -11,7 +11,10 @@ public class StarFunctions : MonoBehaviour
     public int intdustGained = 0;
     public bool timesped = false;
 
-    public static int dustGained;
+    public static int dustGained;   //accessed in startimer to tell us how much a supernova gives
+    //public void Awake() {
+    //    Update();
+    //}
     public static int getDustGained() {
         return dustGained;
     }
@@ -22,30 +25,36 @@ public class StarFunctions : MonoBehaviour
     private void Update() {
         if (mytimer.GetlifeTime() <= 0) {
             SupernovaEvent();
+            superNovaHappened = true;
         }
     }
+    //called once getlifetime returns <=0
     public void SupernovaEvent() {
         starButton.SetActive(false);
         MakeStar.currStarCount--;
 
-        if (timesped == false) intdustGained = Random.Range(5, 20);
+        if (!timesped) intdustGained = Random.Range(1,5);
         else {
             if (starButton.tag == "BlueStar") intdustGained = Random.Range(100, 1000);
-            else intdustGained = Random.Range(10, 100);
-            timesped = false;
-            CurrencyCollected.Instance.intDust += intdustGained;
+      
+            else intdustGained = Random.Range(10, 20);
         }
+        Debug.Log("A Star has exploded, awarding you with " + intdustGained + " dust.");
+        timesped = false;
+        CurrencyCollected.Instance.intDust += intdustGained;
+        //BUG: THE AMOUNT OF DUST PHYSICALLY GAINED CONFLICTS 
+        //WITH WHAT IS BEING DISPLAYED. SEEMS TO ONLY HAPPEN WITH !TIMESPED
         dustGained = intdustGained;
         supernovaSound.playSuperNovaSound();
         superNovaHappened = true;
         TurnOff();
     }
-
+    //this is called on button click on the redstarbutton prefab
     public void SpeedTime() {
         mytimer.SetLifeTime(-1);
         timesped = true;
     }
-
+    //disables the script, called at end of SuperNovaevent()
     public void TurnOff() {
         this.enabled = false;
     }

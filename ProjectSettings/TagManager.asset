@@ -10,6 +10,7 @@ TagManager:
   - Canvas
   - Music
   - Panel
+  - StarsPanel
   layers:
   - Default
   - TransparentFX
