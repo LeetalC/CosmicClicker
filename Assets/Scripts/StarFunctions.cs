@@ -47,6 +47,7 @@ public class StarFunctions : MonoBehaviour
         dustGained = intdustGained;
         supernovaSound.playSuperNovaSound();
         superNovaHappened = true;
+        RandomAsteroid.generateAsteroids();
         TurnOff();
     }
     //this is called on button click on the redstarbutton prefab

@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class RandomAsteroid : MonoBehaviour {
 
-
+    public static Vector3 posit;
+    public Button[] asteroidArr;
+    public void Start()
+    {
+        Button b = asteroidArr[0];
+    }
     //public Image[] asteroidImageArr;
     //public Button asteroidButton;
 
@@ -31,4 +36,16 @@ public class RandomAsteroid : MonoBehaviour {
     //theButton.GetComponent<Image>().sprite = arr[i];
     //theButton.SetActive(true);
     //}
+    public static void generateAsteroids() {
+        Debug.Log("the star exploded and here we are");
+        Transform aRock;
+        
+        //aRock = Instantiate(asteroidArr, posit, Quaternion.identity).transform;
+
+    }
+    public static void getStarsPosition(Vector3 p)
+    {
+        posit = p;
+
+    }
 }

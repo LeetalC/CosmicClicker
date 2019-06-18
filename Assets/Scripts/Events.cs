@@ -13,9 +13,20 @@ public class Events : MonoBehaviour {
     public static int passGasGen = 0;
     public static int passDustGen = 0;
 
-    private void Start() {
+    public static float seconds;
+
+    //currently i have a starting value for seconds that doesn't change even if i
+    //want the upgrade to change how quickly you gain gas. need to change
+    private void Start()
+    {
+        seconds = 5.0f;
+    }
+
+    private void Update() {
         if (passGasGen != 0) {
-            InvokeRepeating("PassiveGasGen", 1.0f, 1.0f);
+            InvokeRepeating("PassiveGasGen", 1f, seconds);
+            Debug.Log("here");
+            this.enabled = false;
         }
     }
 

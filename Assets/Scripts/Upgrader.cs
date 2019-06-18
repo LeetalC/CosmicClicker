@@ -83,7 +83,7 @@ public class Upgrader : MonoBehaviour {
             GetGas.gasPerClick += 2;
             say("Upgraded Harvester.");
             // upgradeText.GetComponent<Animation>().Play("UpgradeAnim");
-            CurrencyCollected.Instance.intDust -= 2;
+            CurrencyCollected.Instance.intDust -= uhDUSTCOST;
             uhDUSTCOST++;
         }
     }

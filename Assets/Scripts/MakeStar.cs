@@ -31,8 +31,15 @@ public class MakeStar : MonoBehaviour
     }
     //public void instantiateStarbirthimg(Vector3 pos) {
     //    Instantiate(img1, pos, Quaternion.identity);
-       
+
     //}
+    public void Update()
+    {
+        if (Input.GetKeyDown("2"))
+        {
+            MakeAStar();
+        }
+    }
     public void MakeAStar() {   
         Transform aStar;
         int newX = 1080;
@@ -69,10 +76,10 @@ public class MakeStar : MonoBehaviour
             currStarCount++;
             madeRedStar = madeBlueStar = false;
 
-
+            RandomAsteroid.getStarsPosition(position);
             //NOTE:i dont want to hardcode this value, 
             //the object should be destroyed in the amount of time that startimer.lifetime says
-            Destroy(aStar.gameObject, 10.0f);
+            Destroy(aStar.gameObject, 40.0f);
         }
         else {
             makeStarButtonSound.succeedFail(false);

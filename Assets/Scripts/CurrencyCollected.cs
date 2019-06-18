@@ -17,8 +17,8 @@ public class CurrencyCollected : SingletonOK<CurrencyCollected> {
     void FixedUpdate()
     {
         //displays the gas and dust on the screen
-        gasDisplayText.text = "Gas: " + intGas + " tons.";
-        dustDisplayText.text = "Dust: " + intDust + " tons.";
+        gasDisplayText.text = "Gas: " + intGas;
+        dustDisplayText.text = "Dust: " + intDust;
 
         //so long as u have 20 gas you will see the make star button
         if (intGas >= 20) starButton.SetActive(true);

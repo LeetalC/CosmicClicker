@@ -25,55 +25,31 @@ public class Menu : MonoBehaviour
         PlanetButton.SetActive(false);
        // unlockplanetbutton();
     }
+ 
+    //called by the menu button
+    public void changePanel(GameObject active, GameObject pOne, GameObject pTwo, GameObject pThree) {
+        active.SetActive(true);
+        pOne.SetActive(false);
+        pTwo.SetActive(false);
+        pThree.SetActive(false);
+       // pFour.SetActive(false);
+    }
+
+
 
     public void switchtomenu() {
-        //if (!mainPanel.activeInHierarchy) {
-        //    mainPanel.SetActive(true);
-        //    menuPanel.SetActive(false);
-        //    planetPanel.SetActive(false);
-
-        //}
-        //else
-        //{
-        //    menuPanel.SetActive(false);
-        //}
-        if (mainPanel.activeInHierarchy)
-        {
-
-
-            mainPanel.SetActive(false);
-            menuPanel.SetActive(true);
-        }
-        else
-        {
-            menuPanel.SetActive(false);
-            mainPanel.SetActive(true);
-        }
-
+        if (!menuPanel.activeInHierarchy) changePanel(menuPanel, mainPanel, planetPanel, settingsPanel);
+        else changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
 
     }
+
     public void switchtoplanets() {
-        if (mainPanel.activeInHierarchy) {
-            mainPanel.SetActive(false);
-            planetPanel.SetActive(true);
-        }
-        else {
-            planetPanel.SetActive(false);
-            menuPanel.SetActive(true);
-            
-        }
+        if (!planetPanel.activeInHierarchy) changePanel(planetPanel, mainPanel, menuPanel, settingsPanel);
+        else changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
     }
     public void switchtosettings() {
-        if (mainPanel.activeInHierarchy)
-        {
-            settingsPanel.SetActive(true);
-            mainPanel.SetActive(false);
-        }
-        else
-        {
-            settingsPanel.SetActive(false);
-            mainPanel.SetActive(true);
-        }
+        if (!settingsPanel.activeInHierarchy) changePanel(settingsPanel, mainPanel, menuPanel, planetPanel);
+        else changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
 
     }
     public void Update() {

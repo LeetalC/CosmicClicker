@@ -9,7 +9,12 @@ public class Sounds : MonoBehaviour
     public AudioClip[] novas;
     public AudioClip[] soundSucceeded;
     public AudioClip[] bgMusics;
+    public AudioClip tink;
+    public AudioClip menuSwitchSound;
+
     public AudioSource soundMaker;
+    public AudioSource bgMusic;
+
 
     public void Awake() {
         soundMaker = GetComponent<AudioSource>();
@@ -20,6 +25,11 @@ public class Sounds : MonoBehaviour
     }
     public void playSound() {
         soundMaker.clip = beeps[getRand(beeps.Length)];
+        soundMaker.volume = .8f;
+        soundMaker.Play();
+    }
+    public void playUpgradeSound() {
+        soundMaker.clip = tink;
         soundMaker.Play();
     }
     //is only called in starfunctions.cs when supernovaevent() happens
@@ -28,6 +38,9 @@ public class Sounds : MonoBehaviour
         soundMaker.Play();
 
     }
+    public void muteMusic() {
+        bgMusic.mute = !bgMusic.mute;
+    }
     public AudioClip setBGMusic(int i) {
         return bgMusics[i];
     }
@@ -35,6 +48,11 @@ public class Sounds : MonoBehaviour
     public void succeedFail(bool b) {
         if (b) soundMaker.clip = soundSucceeded[1];
         else soundMaker.clip = soundSucceeded[0];
+        soundMaker.Play();
+    }
+    public void playMenuSwitch()
+    {
+        soundMaker.clip = menuSwitchSound;
         soundMaker.Play();
     }
 
