@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Menu : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class Menu : MonoBehaviour
     public GameObject starsPanel;
     public GameObject settingsPanel;
 
+    public GameObject settingsButton;
+    public GameObject menuButton;
+
+    public GameObject settingsButtonText;
+    public GameObject menuButtonText;
+    
     public GameObject PlanetButton;
     public bool planetbuttonUnlocked = false;
     //Why did i need this?
@@ -38,8 +45,18 @@ public class Menu : MonoBehaviour
 
 
     public void switchtomenu() {
-        if (!menuPanel.activeInHierarchy) changePanel(menuPanel, mainPanel, planetPanel, settingsPanel);
-        else changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
+        if (!menuPanel.activeInHierarchy)
+        {
+            settingsButton.SetActive(false);
+            menuButtonText.GetComponent<TextMeshProUGUI>().text = "GO BACK";
+            changePanel(menuPanel, mainPanel, planetPanel, settingsPanel);
+        }
+        else
+        {
+            settingsButton.SetActive(true);
+            menuButtonText.GetComponent<TextMeshProUGUI>().text = "UPGRADES";
+            changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
+        }
 
     }
 
@@ -48,8 +65,18 @@ public class Menu : MonoBehaviour
         else changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
     }
     public void switchtosettings() {
-        if (!settingsPanel.activeInHierarchy) changePanel(settingsPanel, mainPanel, menuPanel, planetPanel);
-        else changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
+        if (!settingsPanel.activeInHierarchy)
+        {
+            menuButton.SetActive(false);
+            settingsButtonText.GetComponent<TextMeshProUGUI>().text = "GO BACK";
+            changePanel(settingsPanel, mainPanel, menuPanel, planetPanel);
+        }
+        else
+        {
+            menuButton.SetActive(true);
+            settingsButtonText.GetComponent<TextMeshProUGUI>().text = "SETTINGS";
+            changePanel(mainPanel, menuPanel, planetPanel, settingsPanel);
+        }
 
     }
     public void Update() {

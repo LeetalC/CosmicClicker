@@ -19,14 +19,13 @@ public class Settings : MonoBehaviour
         if (name == "BGM2")
         {
             audio.clip = soundController.setBGMusic(1);
-            audio.volume = .5f;
+            audio.volume = .45f;
         }
         if (name == "BGM3")
         {
             audio.clip = soundController.setBGMusic(2);
-            audio.volume = .5f;
+            audio.volume = .18f;
         }
-
 
         audio.Play();
     }

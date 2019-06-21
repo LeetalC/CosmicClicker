@@ -23,18 +23,26 @@ public class Sounds : MonoBehaviour
     public int getRand(int l) {
         return Random.Range(0, l);
     }
+
+    //harvest nebulous gasses calls this
     public void playSound() {
         soundMaker.clip = beeps[getRand(beeps.Length)];
-        soundMaker.volume = .8f;
+        soundMaker.volume = .19f;
         soundMaker.Play();
     }
+    //upgrades call this
     public void playUpgradeSound() {
         soundMaker.clip = tink;
         soundMaker.Play();
     }
     //is only called in starfunctions.cs when supernovaevent() happens
     public void playSuperNovaSound() {
-        soundMaker.clip = novas[getRand(novas.Length)];
+        int i = getRand(novas.Length);
+        soundMaker.clip = novas[i];
+        if(i== 0)
+        {
+            soundMaker.volume = .08f;
+        }
         soundMaker.Play();
 
     }
@@ -50,6 +58,7 @@ public class Sounds : MonoBehaviour
         else soundMaker.clip = soundSucceeded[0];
         soundMaker.Play();
     }
+    //menu buttons play this
     public void playMenuSwitch()
     {
         soundMaker.clip = menuSwitchSound;

@@ -20,19 +20,12 @@ public class MakeStar : MonoBehaviour
     public bool madeRedStar = false;
 
     public static Transform transformStar;
-    public static int maxNumStars = 5;
+    public static int maxNumStars = 1;
     public static int currStarCount = 0;
     public GameObject img1;
     public GameObject img2;
 
 
-    public void Start() {
-        
-    }
-    //public void instantiateStarbirthimg(Vector3 pos) {
-    //    Instantiate(img1, pos, Quaternion.identity);
-
-    //}
     public void Update()
     {
         if (Input.GetKeyDown("2"))
@@ -49,11 +42,14 @@ public class MakeStar : MonoBehaviour
         if (currStarCount < maxNumStars) {  //asking if we are allowed to make another star
 
             makeStarButtonSound.succeedFail(true);
+          //  int r = Random.Range(0, 360);
             Vector3 position = new Vector3(Random.Range(100, newX-100), Random.Range(700, newY-400), 0);
           //  instantiateStarbirthimg(position);
             // posArr[i] = position; possibly might go back to the idea of an array of positions
             if (CurrencyCollected.Instance.intGas >= 500 && Upgrader.bluestarunlocked == true) {    //makes a blue star if you have the gas count for it  
                 aStar = Instantiate(blueStar, position, Quaternion.identity).transform;
+              //  RectTransform rt = aStar.GetComponent<RectTransform>();
+              //  rt.Rotate(new Vector3(0, 0, r));
                 CurrencyCollected.Instance.intGas -= 500;
                 Debug.Log("You made a blue star, your gas count has been reduced by 100.");
                 madeBlueStar = true;
@@ -79,7 +75,7 @@ public class MakeStar : MonoBehaviour
             RandomAsteroid.getStarsPosition(position);
             //NOTE:i dont want to hardcode this value, 
             //the object should be destroyed in the amount of time that startimer.lifetime says
-            Destroy(aStar.gameObject, 40.0f);
+            Destroy(aStar.gameObject, 26.0f);
         }
         else {
             makeStarButtonSound.succeedFail(false);

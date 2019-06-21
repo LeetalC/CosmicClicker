@@ -402,6 +402,7 @@ MonoBehaviour:
   soundSucceeded: []
   bgMusics: []
   tink: {fileID: 0}
+  menuSwitchSound: {fileID: 0}
   soundMaker: {fileID: 6035913103663181529}
   bgMusic: {fileID: 0}
 --- !u!1001 &2985366697281942703

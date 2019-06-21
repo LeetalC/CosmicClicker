@@ -9,7 +9,7 @@ public class GetGas : MonoBehaviour {
     public CurrencyCollected currencyColl;
     public GameObject gasGainedText;
     public GameObject harvestGasText;
-    public static int gasPerClick = 40;
+    public static int gasPerClick = 5;
 
     public void Update() {
         if (Input.GetKeyDown("1")) {

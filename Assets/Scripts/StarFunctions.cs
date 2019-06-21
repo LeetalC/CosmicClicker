@@ -33,11 +33,11 @@ public class StarFunctions : MonoBehaviour
         starButton.SetActive(false);
         MakeStar.currStarCount--;
 
-        if (!timesped) intdustGained = Random.Range(1,5);
+        if (!timesped) intdustGained = Random.Range(1,3);
         else {
-            if (starButton.tag == "BlueStar") intdustGained = Random.Range(100, 1000);
+            if (starButton.tag == "BlueStar") intdustGained = Random.Range(10, 15);
       
-            else intdustGained = Random.Range(10, 20);
+            else intdustGained = Random.Range(4, 8);
         }
         Debug.Log("A Star has exploded, awarding you with " + intdustGained + " dust.");
         timesped = false;

@@ -15,6 +15,10 @@ public class Upgrader : MonoBehaviour {
     public GameObject passiveGenText;
     public GameObject blueStarCostText;
 
+    public GameObject gasPerClickDisplay;
+    public GameObject numberofStarsDisplay;
+    public GameObject passiveGasGenDisplay;
+
     //buttons correlated with upgrades
     public Button harvesterUp;
     public Button starCapUp;
@@ -67,6 +71,11 @@ public class Upgrader : MonoBehaviour {
     }
     public void Update() {
         //horribly inefficient find better solution to display the text.
+        gasPerClickDisplay.GetComponent<TextMeshProUGUI>().text = (GetGas.gasPerClick + " /tap");
+        numberofStarsDisplay.GetComponent<TextMeshProUGUI>().text = (MakeStar.maxNumStars + " stars");
+        passiveGasGenDisplay.GetComponent<TextMeshProUGUI>().text = (Events.passGasGen +" /" + Events.seconds + " sec");
+
+
         harvestorCostText.GetComponent<TextMeshProUGUI>().text = (uhGASCOST + " Gas, " + uhDUSTCOST + " Dust.");
         starcapCostText.GetComponent<TextMeshProUGUI>().text = (iscGASCOST + " Gas, " + iscDUSTCOST + " Dust.");
         passiveGenText.GetComponent<TextMeshProUGUI>().text = (pggGASCOST + " Gas, " + pggDUSTCOST + " Dust.");
