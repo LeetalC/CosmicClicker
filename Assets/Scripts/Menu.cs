@@ -29,7 +29,7 @@ public class Menu : MonoBehaviour
         starsPanel.SetActive(true);
         mainPanel.SetActive(true);
         menuPanel.SetActive(false);
-        PlanetButton.SetActive(false);
+        PlanetButton.SetActive(true);
        // unlockplanetbutton();
     }
  
@@ -79,14 +79,14 @@ public class Menu : MonoBehaviour
         }
 
     }
-    public void Update() {
+    // public void Update() {
 
-        if (!planetbuttonUnlocked && CurrencyCollected.Instance.intGas >= 500 && CurrencyCollected.Instance.intDust >= 190) {
-            PlanetButton.SetActive(true);
-            planetbuttonUnlocked = true;
-        }
+    //     if (!planetbuttonUnlocked && CurrencyCollected.Instance.intGas >= 500 && CurrencyCollected.Instance.intDust >= 190) {
+    //         PlanetButton.SetActive(true);
+    //         planetbuttonUnlocked = true;
+    //     }
      
-    }
+    // }
 }
 //when I was using scenes instead of panels
 /*  //if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("MenuScene")) {

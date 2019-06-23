@@ -4,48 +4,61 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RandomAsteroid : MonoBehaviour {
+    private MakeStar ms;    //going to get stars position so these can generate asteroids
+    public Sprite[] asteroidImages;
 
-    public static Vector3 posit;
-    public Button[] asteroidArr;
-    public void Start()
-    {
-        Button b = asteroidArr[0];
+    public GameObject asteroidButton;
+
+    public Vector3 pos;
+    private int min;
+    private int max;
+    private int blueMinAsteroid = 5;
+    private int blueMaxAsteroid = 10;
+    private int redMinAsteroid = 1;
+    private int redMaxAsteroid = 3;
+
+    private float asteroidScreenTime = 5f;
+    void Start(){
+        pos = MakeStar.starsPosition;
     }
-    //public Image[] asteroidImageArr;
-    //public Button asteroidButton;
-
-    //public void selectImage() {
-    //    int i = Random.Range(0, asteroidImageArr.Length);
-    //    asteroidButton = gameObject.GetComponent<Image>();
-    //    asteroidButton.sprite = asteroidImageArr[i];
-
-    //}
-    ////public static GameObject theButton;
-
-    //public static Sprite[] arr = new Sprite[5];
-
-    //public static void generateAsteroidImage() {
-    //    Debug.Log("We are at generate Image");
-    //    int num = Random.Range(3, 7); //supposed to be the number responsible for randomly generating num amount of asteroids.
-    //    Vector3 position = new Vector3(Random.Range(100, 100), Random.Range(700, 400), 0);
-    //    for (int k = 0; k < num; ++k) {
-    //        theButton = Instantiate(theButton, position, Quaternion.identity);
-    //        theButton.SetActive(false);
-    //    }
-    //int i = Random.Range(0, 5);
-    //theButton.GetComponent<Image>().sprite = arr[i];
-    //theButton.SetActive(true);
-    //}
-    public static void generateAsteroids() {
-        Debug.Log("the star exploded and here we are");
+    //instantiating a random number of asteroid objects, with a random asteroid image
+    public void generateAsteroids() {
         Transform aRock;
-        
-        //aRock = Instantiate(asteroidArr, posit, Quaternion.identity).transform;
+        if(MakeStar.madeBlueStar) 
+        {
+            min = blueMinAsteroid;
+            max = blueMaxAsteroid;
+        }
+        else {
+            min = redMinAsteroid;
+            max = redMaxAsteroid;
+        }
+        //should REALLY generate asteroids based on 
+        //stars, like tiny ones more likely to come out of red stars and vice versa
+        for(int i = 0; i < Random.Range(min,max); i++){
+            //generating an asteroid at an offset to the star
+            aRock = Instantiate(asteroidButton, pos + new Vector3(Random.Range(-200,200), Random.Range(-200,200), 0), Quaternion.identity).transform;
+            asteroidButton.GetComponent<Image>().sprite = asteroidImages[Random.Range(0, asteroidImages.Length)];
+            aRock.SetParent(GameObject.FindGameObjectWithTag("StarsPanel").transform, true);
+            Destroy(aRock, asteroidScreenTime);
+        }
 
     }
-    public static void getStarsPosition(Vector3 p)
+
+
+    Quaternion PointOnCircle2D(float p, int steps)
     {
-        posit = p;
-
+        float degrees = 360f / steps;
+        return Quaternion.Euler(0f, 0f, p * -degrees);
     }
+          //    float rot = Random.Range(0,360);
+         //   Debug.Log("THE RANDOM NUMBEER IS: " + rot);
+           // Quaternion temp = PointOnCircle2D(rot, 280);
+          //  RectTransform rt = asteroidButton.GetComponent<RectTransform>();
+          //  rt.Rotate( new Vector3( 0, 0, Random.Range(0,360) ) );
+           // asteroidButton.GetComponent<Transform>().rotation = temp;
+
+
+            //Random.Range(0,360);
+
 }

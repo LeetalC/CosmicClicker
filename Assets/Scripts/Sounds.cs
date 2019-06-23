@@ -6,7 +6,6 @@ public class Sounds : MonoBehaviour
 {
     //public AudioSource[] clips;
     public AudioClip[] beeps;
-    public AudioClip[] novas;
     public AudioClip[] soundSucceeded;
     public AudioClip[] bgMusics;
     public AudioClip tink;
@@ -14,11 +13,14 @@ public class Sounds : MonoBehaviour
 
     public AudioSource soundMaker;
     public AudioSource bgMusic;
+    //public static bool superNovaHappened = false;
+
 
 
     public void Awake() {
         soundMaker = GetComponent<AudioSource>();
     }
+   
     //should be in another script of random helper functions?
     public int getRand(int l) {
         return Random.Range(0, l);
@@ -35,17 +37,7 @@ public class Sounds : MonoBehaviour
         soundMaker.clip = tink;
         soundMaker.Play();
     }
-    //is only called in starfunctions.cs when supernovaevent() happens
-    public void playSuperNovaSound() {
-        int i = getRand(novas.Length);
-        soundMaker.clip = novas[i];
-        if(i== 0)
-        {
-            soundMaker.volume = .08f;
-        }
-        soundMaker.Play();
 
-    }
     public void muteMusic() {
         bgMusic.mute = !bgMusic.mute;
     }

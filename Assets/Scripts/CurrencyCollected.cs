@@ -21,7 +21,7 @@ public class CurrencyCollected : SingletonOK<CurrencyCollected> {
         dustDisplayText.text = "Dust: " + intDust;
 
         //so long as u have 20 gas you will see the make star button
-        if (intGas >= 100) starButton.SetActive(true);
+        if (intGas >= 50) starButton.SetActive(true);
         else starButton.SetActive(false);
     }
 }

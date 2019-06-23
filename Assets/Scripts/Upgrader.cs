@@ -25,6 +25,10 @@ public class Upgrader : MonoBehaviour {
     public Button getBlueStarsUp;
     public Button passiveGasGenUp;
 
+    public GameObject harvesterTextLevel;
+    public GameObject maxStarsTextLevel;
+    public GameObject passiveGasTextLevel;
+
 
     public int dustUpgradeMax = 2;
     public int harvesterUpgradeMax = 100;
@@ -43,8 +47,15 @@ public class Upgrader : MonoBehaviour {
     public int uhGASCOST = 0;
     public int uhDUSTCOST = 2;
 
+    private int harvesterLevel = 0;
+    private int maxStarLevel = 0;
+    private int passiveGasLevel = 0;
+
     public static bool bluestarunlocked = false;
 
+void Start(){
+    UpdateInfo();
+}
     public bool eventErrorFound(int dust, int gas, int dustCost, int gasCost) {
         if (gas < gasCost && dust < dustCost) {
             eventText.GetComponent<TextMeshProUGUI>().text = ("Not enough gas or dust! You need: " + (gasCost - gas) + " more gas and " + (dustCost - dust) + " more dust.");
@@ -69,11 +80,23 @@ public class Upgrader : MonoBehaviour {
         eventText.GetComponent<TextMeshProUGUI>().text = (s);
         eventText.GetComponent<Animation>().Play("EventAnim");
     }
+    public void displayLevel(GameObject obj, int level){
+        obj.GetComponent<TextMeshProUGUI>().text = (level.ToString("#"));
+    }
     public void Update() {
         //horribly inefficient find better solution to display the text.
-        gasPerClickDisplay.GetComponent<TextMeshProUGUI>().text = (GetGas.gasPerClick + " /tap");
+
+      
+    }
+
+    void UpdateInfo(){
+  gasPerClickDisplay.GetComponent<TextMeshProUGUI>().text = (GetGas.gasPerClick + " /tap");
         numberofStarsDisplay.GetComponent<TextMeshProUGUI>().text = (MakeStar.maxNumStars + " stars");
         passiveGasGenDisplay.GetComponent<TextMeshProUGUI>().text = (Events.passGasGen +" /" + Events.seconds + " sec");
+        displayLevel(harvesterTextLevel,harvesterLevel);
+        displayLevel(maxStarsTextLevel,maxStarLevel);
+        displayLevel(passiveGasTextLevel,passiveGasLevel);
+
 
 
         harvestorCostText.GetComponent<TextMeshProUGUI>().text = (uhGASCOST + " Gas, " + uhDUSTCOST + " Dust.");
@@ -91,33 +114,41 @@ public class Upgrader : MonoBehaviour {
             // upgradeText.GetComponent<TextMeshProUGUI>().text = ("+" + 2);
             GetGas.gasPerClick += 2;
             say("Upgraded Harvester.");
+            harvesterLevel++;
             // upgradeText.GetComponent<Animation>().Play("UpgradeAnim");
             CurrencyCollected.Instance.intDust -= uhDUSTCOST;
             uhDUSTCOST++;
         }
+        UpdateInfo();
     }
 
     public void IncStarCapacity() {
         if (!eventErrorFound(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, iscDUSTCOST, iscGASCOST)) {
             say("Star Cap Increased.");
+            maxStarLevel++;
             MakeStar.maxNumStars += 1;
             CurrencyCollected.Instance.intGas -= iscGASCOST;
             CurrencyCollected.Instance.intDust -= iscDUSTCOST;
             iscGASCOST += 10;
             iscDUSTCOST++;
         }
+        
+        UpdateInfo();
 
     }
 
     public void PassiveGasGenerator() {
         if (!eventErrorFound(CurrencyCollected.Instance.intDust, CurrencyCollected.Instance.intGas, pggDUSTCOST, pggGASCOST)) {
             say("Passive Gas Increased.");
+            passiveGasLevel++;
             Events.passGasGen += 2;
             CurrencyCollected.Instance.intGas -= pggGASCOST;
             CurrencyCollected.Instance.intDust -= pggDUSTCOST;
             pggGASCOST += 100;
             pggDUSTCOST *= 2;
         }
+        
+        UpdateInfo();
     }
 
     public void UnlockBlueStars() {
@@ -129,6 +160,8 @@ public class Upgrader : MonoBehaviour {
             Destroy(getBlueStarsUp.gameObject);
             Destroy(blueStarCostText.gameObject);
         }
+        
+        UpdateInfo();
     }
     //--------------------------------------------
 }
